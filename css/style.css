@@ -1,0 +1,953 @@
+/* =========================================
+   Variables & Reset
+   ========================================= */
+:root {
+    --color-primary-dark: #2563eb;
+    --color-primary: #3b82f6;
+    --color-secondary: #10b981;
+    --color-accent-blue: #60a5fa;
+    --color-accent-yellow: #fcd34d;
+    --color-accent-pink: #f472b6;
+    --color-accent-orange: #f97316;
+    
+    --color-text-main: #333333;
+    --color-text-sub: #666666;
+    --color-bg-light: #f8fafc;
+    --color-white: #ffffff;
+
+    --gradient-hero: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%);
+    --gradient-btn: linear-gradient(90deg, #fdc700, #f6339a);
+    --gradient-btn2: linear-gradient(90deg, #155dfc, #00c950);
+    --gradient-blue: linear-gradient(90deg, #2b7fff, #00d3f2);
+    --gradient-green: linear-gradient(90deg, #00c950, #00d492);
+    --gradient-orange: linear-gradient(90deg, #f0b100, #ff6900);
+    --gradient-pink: linear-gradient(90deg, #f6339a, #ad46ff);
+    --font-base: "Noto Sans JP", sans-serif;
+    --container-width: 1000px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-base);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    background-color: var(--color-white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+/* =========================================
+   Layout Utilities
+   ========================================= */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section--bg-gray {
+    background-color: var(--color-bg-light);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 40px;
+    letter-spacing: 0.05em;
+}
+
+.section-title--ja {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-text-sub);
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.section-title--white {
+    color: var(--color-white);
+}
+
+.section-title--white .section-title--ja {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.section-desc {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-text-main);
+}
+
+/* =========================================
+   Components: Buttons
+   ========================================= */
+.button {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-align: center;
+    transition: transform 0.2s, opacity 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.button--primary {
+    background: var(--gradient-btn);
+    color: var(--color-white);
+    /* box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4); */
+}
+
+.button--primary2 {
+    background: var(--gradient-btn2);
+    color: var(--color-white);
+    /* box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4); */
+}
+.button--white-outline {
+    background: transparent;
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+}
+
+.button--pink {
+    background-color: var(--color-accent-pink);
+    color: var(--color-white);
+}
+
+.button--small {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.button--large {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+}
+
+.button--wide {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* =========================================
+   Page Header (Fixed Navigation)
+   ========================================= */
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* ヘッダーの高さ */
+    background-color: #1e3a8a; /* 少し透過させる */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000; /* 最前面に配置 */
+    backdrop-filter: blur(5px); /* すりガラス効果 */
+}
+
+.page-header__inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.page-header__logo a {
+    display: flex;
+    align-items: center;
+}
+
+.page-header__logo img {
+    height: 60px; /* ロゴの高さ制限 */
+    width: auto;
+}
+
+/* Navigation List (Desktop) */
+.page-header__nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 右寄せにする */
+    margin-right: 30px;
+}
+
+.page-header__list {
+    display: flex;
+    gap: 30px; /* メニュー間の余白 */
+}
+
+.page-header__link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase; /* 大文字変換 */
+    position: relative;
+    transition: color 0.3s;
+}
+
+.page-header__link:hover {
+    color: var(--color-primary);
+}
+
+/* Hover underline animation */
+.page-header__link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s;
+}
+
+.page-header__link:hover::after {
+    width: 100%;
+}
+
+/* Mobile Toggle (Hidden on Desktop) */
+.page-header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    padding: 0;
+}
+
+.page-header__toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+    transition: 0.3s;
+}
+
+.page-header__toggle span:nth-child(1) { top: 0; }
+.page-header__toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.page-header__toggle span:nth-child(3) { bottom: 0; }
+
+
+/* =========================================
+   Responsive Adjustments for Header
+   ========================================= */
+@media (max-width: 768px) {
+    /* モバイル時はメニューを隠してハンバーガーのみ表示 */
+    .page-header__nav {
+        display: none; /* JSでクラス付与して表示させるのが一般的 */
+    }
+
+    .page-header__cta {
+        display: none; /* モバイルではCTAも隠すか、ハンバーガー内に入れる */
+    }
+
+    .page-header__toggle {
+        display: block; /* トグルボタンを表示 */
+        margin-left: auto;
+    }
+}
+
+/* Bodyへの調整 
+   ヘッダーがfixedなので、その分コンテンツを下に下げる必要があります
+*/
+body {
+    padding-top: 70px; /* ヘッダーの高さ分 */
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    height: calc(100vh - 70px);
+    background-image: url(../img/F034919F-533A-4915-B681-80AE8E594C39.JPEG);
+    background-position-y: 80%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    color: var(--color-white);
+    padding: 20px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__container {
+    max-width: var(--container-width);
+    /* margin: 0 auto;
+    padding: 0 20px; */
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+}
+
+.hero__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.hero__content {
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-shadow: 1px 1px 6px #333;
+    letter-spacing: 0.3rem;
+}
+
+.hero__title--sub {
+    font-size: 3rem;
+    display: block;
+    margin-top: 10px;
+}
+
+.hero__description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 6px #333;
+    letter-spacing: 0.3rem;
+    font-weight: bold;
+}
+
+/* =========================================
+   Concept Section
+   ========================================= */
+.concept__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.concept__item {
+    display: flex;
+    align-items: center;
+    background: var(--color-white);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.concept__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.concept__icon--blue { background: var(--gradient-blue); }
+.concept__icon--yellow { background: var(--gradient-orange); }
+.concept__icon--pink { background: var(--gradient-pink); }
+
+.concept__tags {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    width: 20%;
+    color: var(--color-white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.tag--blue { 
+    text-align: center;
+    background: var(--gradient-blue);
+ }
+.tag--green { 
+    text-align: center;
+    background: var(--gradient-green);
+ }
+.tag--orange { 
+    text-align: center;
+    background: var(--gradient-orange);
+ }
+.tag--pink { 
+    text-align: center;
+    background: var(--gradient-pink); 
+}
+
+/* =========================================
+   Features Section
+   ========================================= */
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.feature-card--blue { background-color: #e0f2fe; }
+.feature-card--yellow { background-color: #fef9c3; }
+.feature-card--pink { background-color: #fce7f3; }
+
+/* .feature-card__icon {
+    width: 50px;
+    height: 50px;
+    background: var(--color-white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    color: var(--color-text-main);
+} */
+
+.feature-card__icon--blue { 
+    width: 50px;
+    height: 50px;
+    background: var(--color-white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: 700; */
+    font-size: 36px;
+    margin: 0 auto 20px;
+    color: var(--color-white);
+    text-align: center;
+    background: var(--gradient-blue);
+ }
+
+.feature-card__icon--orange { 
+    width: 50px;
+    height: 50px;
+    background: var(--color-white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: 700; */
+    font-size: 24px;
+    margin: 0 auto 20px;
+    color: var(--color-white);
+    text-align: center;
+    background: var(--gradient-pink);
+ }
+.feature-card__icon--pink { 
+    width: 50px;
+    height: 50px;
+    background: var(--color-white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: 700; */
+    font-size: 30px;
+    margin: 0 auto 20px;
+    color: var(--color-white);
+    text-align: center;
+    background: var(--gradient-orange); 
+}
+
+.feature-card__title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--color-text-main);
+    font-weight: 500;
+}
+
+.feature-card__text {
+    font-size: 0.9rem;
+    color: var(--color-text-sub);
+}
+
+/* =========================================
+   Coach Section
+   ========================================= */
+.coach__content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: var(--color-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.coach__image {
+    flex: 1;
+}
+
+.coach__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coach__info {
+    flex: 1;
+    padding: 40px;
+}
+
+.coach__name {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.coach__role {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-sub);
+    margin-left: 10px;
+}
+
+.coach__badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background-color: var(--color-bg-light);
+    color: var(--color-primary);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--color-primary);
+}
+
+/* =========================================
+   School Info Section
+   ========================================= */
+
+.school-info{
+    position: relative;
+    background-image: url(/img/スクリーンショット\ 2026-01-14\ 17.39.29.png);
+    background-position: top -2% right 0;
+    background-size: 30% auto;
+    background-repeat: no-repeat;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.info-card__title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 15px;
+}
+
+.info-card__title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.info-card__title--blue::before { background-color: var(--color-primary); }
+.info-card__title--green::before { background-color: var(--color-secondary); }
+.info-card__title--orange::before { background-color: var(--color-accent-orange); }
+.info-card__title--pink::before { background-color: var(--color-accent-pink); }
+.info-card__title--dark::before { background-color: var(--color-primary-dark); }
+.info-card__title--purple::before { background-color: var(--color-primary-purple); }
+
+.info-card__text {
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+.school-info__map {
+    width: 100%;
+    height: 300px;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   Trial (Form) Section
+   ========================================= */
+.trial__steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.step__circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.step__circle--active {
+    background-color: var(--color-primary);
+}
+
+.step__text {
+    font-size: 0.8rem;
+    color: var(--color-text-sub);
+}
+
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.form__required {
+    background-color: var(--color-accent-pink);
+    color: var(--color-white);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.form__input, .form__textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form__textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form__submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form__privacy {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 15px;
+    color: var(--color-text-sub);
+}
+
+.form__privacy a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* =========================================
+   Instagram Section
+   ========================================= */
+
+.snap-widget{
+    border:none; 
+    overflow:hidden;  
+    width:80%; 
+    height:510px; 
+    margin:0 auto 40px; 
+    display: block;
+}
+
+.instagram__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.instagram__item {
+    background-color: #ddd;
+    aspect-ratio: 1; /* 正方形 */
+    border-radius: 8px;
+}
+
+.instagram__btn-area {
+    text-align: center;
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.footer {
+    background: linear-gradient(180deg, #ffffff 0%, #ebf8ff 100%);
+}
+
+.footer__contact {
+    background: var(--gradient-btn2);
+    padding: 60px 0;
+    text-align: center;
+    border-radius: 40px 40px 0 0; /* 上部の角丸 */
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    background: var(--color-white);
+    padding: 20px 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    min-width: 280px;
+}
+
+.contact-card__icon {
+    font-size: 2rem;
+}
+
+.contact-card__text {
+    font-size: 0.9rem;
+    color: var(--color-text-sub);
+}
+
+.contact-card__number, .contact-card__link {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.footer__bottom {
+    background-color: #1e3a8a; /* 濃い青 */
+    color: var(--color-white);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer__links {
+    margin-bottom: 10px;
+}
+
+.footer__links a {
+    margin: 0 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.footer__copyright {
+    font-size: 0.7rem;
+    opacity: 0.6;
+}
+
+/* =========================================
+   Responsive (Mobile)
+   ========================================= */
+@media (max-width: 768px) {
+    .hero__title { 
+        font-size: 1rem;
+     }
+    .hero__description { 
+        font-size: 0.8rem;
+     }
+
+    .button span {
+        display: none;
+    }
+    
+    .coach__content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .instagram__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================================
+   Responsive (Mobile) - ここを上書きしてください
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- レイアウト調整 --- */
+    .hero{ 
+        background-position-x: 70%;
+        background-position-y: 80%;
+    }
+    .hero__title { font-size: 1.4rem; }
+    .hero__description { font-size: 0.8rem; }
+    .coach__content { flex-direction: column; text-align: center; }
+    .info-grid { grid-template-columns: 1fr; }
+    .instagram__grid { grid-template-columns: repeat(2, 1fr); }
+    .section-title {font-size: 1.4rem;}
+    .section-title--ja {font-size: 0.8rem;}
+    .concept__text span{ display: none; }
+    .tag{ font-size: 0.45rem;}
+
+    /* --- ハンバーガーメニューの挙動 --- */
+    
+    /* 1. トグルボタンの表示 */
+    .page-header__toggle {
+        display: block;
+        z-index: 1100; /* メニューより手前に表示 */
+    }
+
+    /* 2. スマホ用メニューのベース（通常時は隠す） */
+    .page-header__nav {
+        display: block; /* noneからblockに変更 */
+        position: fixed;
+        top: 0;
+        width: 100%;       /* 全画面なら100%、少し見せるなら70%など */
+        height: 100vh;     /* 画面の高さ一杯 */
+        background-color: #1e3a8a;
+        padding-top: 80px; /* 上部の余白 */
+        transform: translateX(100%); /* 右に隠しておく */
+        transition: transform 0.4s ease; /* スライドアニメーション */
+        z-index: 1050;
+    }
+
+    /* 3. クラスが付いたとき（メニューが開いたとき） */
+    .page-header__nav.is-active {
+        transform: translateX(0); /* 画面内に戻す */
+    }
+
+    /* メニューリストのレイアウト調整 */
+    .page-header__list {
+        flex-direction: column; /* 縦並び */
+        align-items: center;
+        gap: 40px;
+    }
+
+    .page-header__link {
+        font-size: 1.2rem;
+    }
+
+    /* CTAボタンなどはメニュー内では隠す（必要に応じて表示調整） */
+    .page-header__cta {
+        display: none;
+    }
+
+    /* --- ハンバーガーボタンのアニメーション --- */
+    
+    /* 開いた状態(.is-active)のボタン装飾 */
+    .page-header__toggle.is-active span:nth-child(1) {
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .page-header__toggle.is-active span:nth-child(2) {
+        opacity: 0; /* 真ん中の線を消す */
+    }
+    
+    .page-header__toggle.is-active span:nth-child(3) {
+        bottom: 50%;
+        transform: translateY(50%) rotate(-45deg); /* 位置調整して回転 */
+        /* ※ 元のbottom:0 をリセットするため位置計算が重要 */
+        top: auto; 
+        bottom: 11px; /* 微調整: 高さ24pxの半分付近 */
+    }
+
+    .instagram{
+        padding: 0px 0px 40px;
+    }
+    
+    .snap-widget{
+        width: 90%;
+        height: 200px;
+    }
+
+    .school-info{
+        background-position: top 10% right 0;
+    }
+}
