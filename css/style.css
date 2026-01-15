@@ -478,7 +478,7 @@ body {
     margin: 0 auto 20px;
     color: var(--color-white);
     text-align: center;
-    background: var(--gradient-pink);
+    background: var(--gradient-orange);
  }
 .feature-card__icon--pink { 
     width: 50px;
@@ -493,7 +493,7 @@ body {
     margin: 0 auto 20px;
     color: var(--color-white);
     text-align: center;
-    background: var(--gradient-orange); 
+    background: var(--gradient-pink); 
 }
 
 .feature-card__title {
