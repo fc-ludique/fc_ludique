@@ -565,7 +565,7 @@ body {
 
 .school-info{
     position: relative;
-    background-image: url(/img/ludique_logo.png);
+    background-image: url(../img/ludique_logo.png);
     background-position: top -2% right 0;
     background-size: 30% auto;
     background-repeat: no-repeat;
